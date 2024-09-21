@@ -1,0 +1,503 @@
+
+<!-- saved from url=(0050)file:///C:/Users/casa/Desktop/Pobreflix/index.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PobreFlix</title>
+    <style>
+      body {
+        font-family: 'Roboto', sans-serif;
+        background-color: #141414;
+        color: #ffffff;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      h1 {
+        text-align: center;
+        color: #e50914;
+      }
+      .movie-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+      }
+      .movie-card {
+        background-color: #2f2f2f;
+        border-radius: 8px;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+      }
+      .movie-card:hover {
+        transform: scale(1.05);
+      }
+      .movie-poster {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+      }
+      .movie-info {
+        padding: 10px;
+      }
+      .movie-title {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+      .movie-details {
+        font-size: 14px;
+        color: #b3b3b3;
+      }
+      .form-group {
+        margin-bottom: 15px;
+      }
+      label {
+        display: block;
+        margin-bottom: 5px;
+      }
+      input[type="text"], input[type="number"], input[type="url"], textarea, select {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #444;
+        background-color: #2f2f2f;
+        color: #fff;
+        border-radius: 4px;
+      }
+      button {
+        background-color: #e50914;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      button:hover {
+        background-color: #f40612;
+      }
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.8);
+      }
+      .modal-content {
+        background-color: #2f2f2f;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 600px;
+        border-radius: 8px;
+      }
+      .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      .close:hover {
+        color: #fff;
+      }
+    </style>
+    </head>
+    <body>
+    <div class="container">
+      <h1>PobreFlix</h1>
+      <div>
+        <input type="text" id="searchInput" placeholder="Pesquisar filmes...">
+        <button onclick="searchMovies()">Buscar</button>
+        <button onclick="showAddMovieModal()">Adicionar Filme</button>
+      </div>
+      <div id="movieGrid" class="movie-grid"><div class="movie-card">
+          <img src="./PobreFlix_files/20176403.jpg" alt="Vida de Inseto" class="movie-poster">
+          <div class="movie-info">
+            <div class="movie-title">Vida de Inseto</div>
+            <div class="movie-details">
+              1998 | Infantil/Aventura | 95 min
+              <br>Classificação: 10/10
+            </div>
+            <button onclick="showMovieDetails(&#39;bfd34fb5-5ff2-4db2-a778-fbafdaefca26&#39;)">Detalhes</button>
+            <button onclick="showEditMovieModal(&#39;bfd34fb5-5ff2-4db2-a778-fbafdaefca26&#39;)">Editar</button>
+            <button onclick="deleteMovie(&#39;bfd34fb5-5ff2-4db2-a778-fbafdaefca26&#39;)">Excluir</button>
+          </div>
+        </div><div class="movie-card">
+          <img src="./PobreFlix_files/20176438.jpg" alt="Up: Altas Aventuras" class="movie-poster">
+          <div class="movie-info">
+            <div class="movie-title">Up: Altas Aventuras</div>
+            <div class="movie-details">
+              2009 | Infantil/Aventura | 95 min
+              <br>Classificação: 10/10
+            </div>
+            <button onclick="showMovieDetails(&#39;2bbb9ffb-d010-4d96-a5db-2984ea0ee80c&#39;)">Detalhes</button>
+            <button onclick="showEditMovieModal(&#39;2bbb9ffb-d010-4d96-a5db-2984ea0ee80c&#39;)">Editar</button>
+            <button onclick="deleteMovie(&#39;2bbb9ffb-d010-4d96-a5db-2984ea0ee80c&#39;)">Excluir</button>
+          </div>
+        </div><div class="movie-card">
+          <img src="./PobreFlix_files/Wreck_It_Ralph_E-Distribution_Electronic_WDSHE_Brazil_APPLE_1400_x_2100_2x3_Brazil.jpg" alt="Detona Ralph" class="movie-poster">
+          <div class="movie-info">
+            <div class="movie-title">Detona Ralph</div>
+            <div class="movie-details">
+              2012 | Infantil/Aventura | 108 min
+              <br>Classificação: 9/10
+            </div>
+            <button onclick="showMovieDetails(&#39;b7887b52-f787-4849-81a1-a59632f783f1&#39;)">Detalhes</button>
+            <button onclick="showEditMovieModal(&#39;b7887b52-f787-4849-81a1-a59632f783f1&#39;)">Editar</button>
+            <button onclick="deleteMovie(&#39;b7887b52-f787-4849-81a1-a59632f783f1&#39;)">Excluir</button>
+          </div>
+        </div><div class="movie-card">
+          <img src="./PobreFlix_files/0132283.jpg" alt="Elementos" class="movie-poster">
+          <div class="movie-info">
+            <div class="movie-title">Elementos</div>
+            <div class="movie-details">
+              2023 | Infantil/Comédia | 109 min
+              <br>Classificação: 8/10
+            </div>
+            <button onclick="showMovieDetails(&#39;8ae3ec03-285b-4ae4-bf15-e33db0833d49&#39;)">Detalhes</button>
+            <button onclick="showEditMovieModal(&#39;8ae3ec03-285b-4ae4-bf15-e33db0833d49&#39;)">Editar</button>
+            <button onclick="deleteMovie(&#39;8ae3ec03-285b-4ae4-bf15-e33db0833d49&#39;)">Excluir</button>
+          </div>
+        </div><div class="movie-card">
+          <img src="./PobreFlix_files/Zootopia-Essa-Cidade-é-o-Bicho.jpg" alt="Zootopia" class="movie-poster">
+          <div class="movie-info">
+            <div class="movie-title">Zootopia</div>
+            <div class="movie-details">
+              2016 | Infantil/Comédia | 108 min
+              <br>Classificação: 10/10
+            </div>
+            <button onclick="showMovieDetails(&#39;c6f73806-deda-4df4-9707-75eb4292cc1a&#39;)">Detalhes</button>
+            <button onclick="showEditMovieModal(&#39;c6f73806-deda-4df4-9707-75eb4292cc1a&#39;)">Editar</button>
+            <button onclick="deleteMovie(&#39;c6f73806-deda-4df4-9707-75eb4292cc1a&#39;)">Excluir</button>
+          </div>
+        </div><div class="movie-card">
+          <img src="./PobreFlix_files/21029996_20130821205722213.jpg" alt="Gente Grande" class="movie-poster">
+          <div class="movie-info">
+            <div class="movie-title">Gente Grande</div>
+            <div class="movie-details">
+              2010 | Comédia/Drama | 102 min
+              <br>Classificação: 9.5/10
+            </div>
+            <button onclick="showMovieDetails(&#39;1b79ef26-350a-4393-b799-192c7a1bae48&#39;)">Detalhes</button>
+            <button onclick="showEditMovieModal(&#39;1b79ef26-350a-4393-b799-192c7a1bae48&#39;)">Editar</button>
+            <button onclick="deleteMovie(&#39;1b79ef26-350a-4393-b799-192c7a1bae48&#39;)">Excluir</button>
+          </div>
+        </div><div class="movie-card">
+          <img src="./PobreFlix_files/509402.jpg" alt="Um Espião e Meio" class="movie-poster">
+          <div class="movie-info">
+            <div class="movie-title">Um Espião e Meio</div>
+            <div class="movie-details">
+              2016 | Comédia/Ação | 116 min
+              <br>Classificação: 8.5/10
+            </div>
+            <button onclick="showMovieDetails(&#39;d75d294e-764e-4e05-b877-88cd83322f01&#39;)">Detalhes</button>
+            <button onclick="showEditMovieModal(&#39;d75d294e-764e-4e05-b877-88cd83322f01&#39;)">Editar</button>
+            <button onclick="deleteMovie(&#39;d75d294e-764e-4e05-b877-88cd83322f01&#39;)">Excluir</button>
+          </div>
+        </div><div class="movie-card">
+          <img src="./PobreFlix_files/Uma_Noite_no_Museu.png" alt="Uma Noite no Museu" class="movie-poster">
+          <div class="movie-info">
+            <div class="movie-title">Uma Noite no Museu</div>
+            <div class="movie-details">
+              2006 | Infantil/Comédia | 106 min
+              <br>Classificação: 9.6/10
+            </div>
+            <button onclick="showMovieDetails(&#39;5fa60760-db6c-4891-bf8e-e68e40387520&#39;)">Detalhes</button>
+            <button onclick="showEditMovieModal(&#39;5fa60760-db6c-4891-bf8e-e68e40387520&#39;)">Editar</button>
+            <button onclick="deleteMovie(&#39;5fa60760-db6c-4891-bf8e-e68e40387520&#39;)">Excluir</button>
+          </div>
+        </div><div class="movie-card">
+          <img src="./PobreFlix_files/57796532ea59a991aeb34b5c4188546eb95b9cca379f1791a9199b803a4edbd2.jpg" alt="Viagem ao Centro da Terra" class="movie-poster">
+          <div class="movie-info">
+            <div class="movie-title">Viagem ao Centro da Terra</div>
+            <div class="movie-details">
+              2008 | Infantil/Aventura | 93 min
+              <br>Classificação: 9/10
+            </div>
+            <button onclick="showMovieDetails(&#39;f3fdb07b-5c6d-4538-b31d-ade06be23d96&#39;)">Detalhes</button>
+            <button onclick="showEditMovieModal(&#39;f3fdb07b-5c6d-4538-b31d-ade06be23d96&#39;)">Editar</button>
+            <button onclick="deleteMovie(&#39;f3fdb07b-5c6d-4538-b31d-ade06be23d96&#39;)">Excluir</button>
+          </div>
+        </div><div class="movie-card">
+          <img src="./PobreFlix_files/20304627.jpg-c_310_420_x-f_jpg-q_x-xxyxx.jpg" alt="Piratas do Caribe: O Baú da Morte" class="movie-poster">
+          <div class="movie-info">
+            <div class="movie-title">Piratas do Caribe: O Baú da Morte</div>
+            <div class="movie-details">
+              2006 | Aventura/Fantasi | 151 min
+              <br>Classificação: 9.7/10
+            </div>
+            <button onclick="showMovieDetails(&#39;46aeb083-b07e-4a46-966e-3231b4ab9739&#39;)">Detalhes</button>
+            <button onclick="showEditMovieModal(&#39;46aeb083-b07e-4a46-966e-3231b4ab9739&#39;)">Editar</button>
+            <button onclick="deleteMovie(&#39;46aeb083-b07e-4a46-966e-3231b4ab9739&#39;)">Excluir</button>
+          </div>
+        </div></div>
+    </div>
+    
+    <div id="addMovieModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeAddMovieModal()">×</span>
+        <h2>Adicionar Novo Filme</h2>
+        <form id="addMovieForm">
+          <div class="form-group">
+            <label for="movieTitle">Título:</label>
+            <input type="text" id="movieTitle" required="">
+          </div>
+          <div class="form-group">
+            <label for="moviePoster">URL da Imagem:</label>
+            <input type="url" id="moviePoster" required="">
+          </div>
+          <div class="form-group">
+            <label for="movieRating">Classificação:</label>
+            <input type="number" id="movieRating" min="0" max="10" step="0.1" required="">
+          </div>
+          <div class="form-group">
+            <label for="movieDuration">Duração (minutos):</label>
+            <input type="number" id="movieDuration" min="1" required="">
+          </div>
+          <div class="form-group">
+            <label for="movieGenre">Gênero:</label>
+            <input type="text" id="movieGenre" required="">
+          </div>
+          <div class="form-group">
+            <label for="movieYear">Ano de Lançamento:</label>
+            <input type="number" id="movieYear" min="1900" max="2099" required="">
+          </div>
+          <div class="form-group">
+            <label for="movieSynopsis">Sinopse:</label>
+            <textarea id="movieSynopsis" rows="4" required=""></textarea>
+          </div>
+          <div class="form-group">
+            <label for="movieTrailer">URL do Trailer:</label>
+            <input type="url" id="movieTrailer" required="">
+          </div>
+          <button type="submit">Adicionar Filme</button>
+        </form>
+      </div>
+    </div>
+    
+    <div id="editMovieModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeEditMovieModal()">×</span>
+        <h2>Editar Filme</h2>
+        <form id="editMovieForm">
+          <input type="hidden" id="editMovieId">
+          <div class="form-group">
+            <label for="editMovieTitle">Título:</label>
+            <input type="text" id="editMovieTitle" required="">
+          </div>
+          <div class="form-group">
+            <label for="editMoviePoster">URL da Imagem:</label>
+            <input type="url" id="editMoviePoster" required="">
+          </div>
+          <div class="form-group">
+            <label for="editMovieRating">Classificação:</label>
+            <input type="number" id="editMovieRating" min="0" max="10" step="0.1" required="">
+          </div>
+          <div class="form-group">
+            <label for="editMovieDuration">Duração (minutos):</label>
+            <input type="number" id="editMovieDuration" min="1" required="">
+          </div>
+          <div class="form-group">
+            <label for="editMovieGenre">Gênero:</label>
+            <input type="text" id="editMovieGenre" required="">
+          </div>
+          <div class="form-group">
+            <label for="editMovieYear">Ano de Lançamento:</label>
+            <input type="number" id="editMovieYear" min="1900" max="2099" required="">
+          </div>
+          <div class="form-group">
+            <label for="editMovieSynopsis">Sinopse:</label>
+            <textarea id="editMovieSynopsis" rows="4" required=""></textarea>
+          </div>
+          <div class="form-group">
+            <label for="editMovieTrailer">URL do Trailer:</label>
+            <input type="url" id="editMovieTrailer" required="">
+          </div>
+          <button type="submit">Salvar Alterações</button>
+        </form>
+      </div>
+    </div>
+    
+    <script src="./PobreFlix_files/uuid.min.js.download"></script>
+    <script>
+    let movies = [];
+    
+    class Movie {
+      constructor(id, title, poster, rating, duration, genre, year, synopsis, trailer) {
+        this.id = id;
+        this.title = title;
+        this.poster = poster;
+        this.rating = rating;
+        this.duration = duration;
+        this.genre = genre;
+        this.year = year;
+        this.synopsis = synopsis;
+        this.trailer = trailer;
+      }
+    }
+    
+    function addMovie(title, poster, rating, duration, genre, year, synopsis, trailer) {
+      const id = uuid.v4();
+      const movie = new Movie(id, title, poster, rating, duration, genre, year, synopsis, trailer);
+      movies.push(movie);
+      saveMovies();
+      renderMovies();
+    }
+    
+    function editMovie(id, title, poster, rating, duration, genre, year, synopsis, trailer) {
+      const index = movies.findIndex(movie => movie.id === id);
+      if (index !== -1) {
+        movies[index] = new Movie(id, title, poster, rating, duration, genre, year, synopsis, trailer);
+        saveMovies();
+        renderMovies();
+      }
+    }
+    
+    function deleteMovie(id) {
+      movies = movies.filter(movie => movie.id !== id);
+      saveMovies();
+      renderMovies();
+    }
+    
+    function searchMovies() {
+      const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+      const filteredMovies = movies.filter(movie => 
+        movie.title.toLowerCase().includes(searchTerm) ||
+        movie.genre.toLowerCase().includes(searchTerm) ||
+        movie.year.toString().includes(searchTerm)
+      );
+      renderMovies(filteredMovies);
+    }
+    
+    function renderMovies(moviesToRender = movies) {
+      const movieGrid = document.getElementById('movieGrid');
+      movieGrid.innerHTML = '';
+      moviesToRender.forEach(movie => {
+        const movieCard = document.createElement('div');
+        movieCard.className = 'movie-card';
+        movieCard.innerHTML = `
+          <img src="${movie.poster}" alt="${movie.title}" class="movie-poster">
+          <div class="movie-info">
+            <div class="movie-title">${movie.title}</div>
+            <div class="movie-details">
+              ${movie.year} | ${movie.genre} | ${movie.duration} min
+              <br>Classificação: ${movie.rating}/10
+            </div>
+            <button onclick="showMovieDetails('${movie.id}')">Detalhes</button>
+            <button onclick="showEditMovieModal('${movie.id}')">Editar</button>
+            <button onclick="deleteMovie('${movie.id}')">Excluir</button>
+          </div>
+        `;
+        movieGrid.appendChild(movieCard);
+      });
+    }
+    
+    function showMovieDetails(id) {
+      const movie = movies.find(m => m.id === id);
+      if (movie) {
+        const detailsModal = document.createElement('div');
+        detailsModal.className = 'modal';
+        detailsModal.style.display = 'block';
+        detailsModal.innerHTML = `
+          <div class="modal-content">
+            <span class="close" onclick="this.parentElement.parentElement.remove()">&times;</span>
+            <h2>${movie.title}</h2>
+            <img src="${movie.poster}" alt="${movie.title}" style="max-width: 200px;">
+            <p><strong>Ano:</strong> ${movie.year}</p>
+            <p><strong>Gênero:</strong> ${movie.genre}</p>
+            <p><strong>Duração:</strong> ${movie.duration} min</p>
+            <p><strong>Classificação:</strong> ${movie.rating}/10</p>
+            <p><strong>Sinopse:</strong> ${movie.synopsis}</p>
+            <h3>Trailer</h3>
+            <iframe width="560" height="315" src="${movie.trailer}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          </div>
+        `;
+        document.body.appendChild(detailsModal);
+      }
+    }
+    
+    function showAddMovieModal() {
+      document.getElementById('addMovieModal').style.display = 'block';
+    }
+    
+    function closeAddMovieModal() {
+      document.getElementById('addMovieModal').style.display = 'none';
+    }
+    
+    function showEditMovieModal(id) {
+      const movie = movies.find(m => m.id === id);
+      if (movie) {
+        document.getElementById('editMovieId').value = movie.id;
+        document.getElementById('editMovieTitle').value = movie.title;
+        document.getElementById('editMoviePoster').value = movie.poster;
+        document.getElementById('editMovieRating').value = movie.rating;
+        document.getElementById('editMovieDuration').value = movie.duration;
+        document.getElementById('editMovieGenre').value = movie.genre;
+        document.getElementById('editMovieYear').value = movie.year;
+        document.getElementById('editMovieSynopsis').value = movie.synopsis;
+        document.getElementById('editMovieTrailer').value = movie.trailer;
+        document.getElementById('editMovieModal').style.display = 'block';
+      }
+    }
+    
+    function closeEditMovieModal() {
+      document.getElementById('editMovieModal').style.display = 'none';
+    }
+    
+    document.getElementById('addMovieForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const title = document.getElementById('movieTitle').value;
+      const poster = document.getElementById('moviePoster').value;
+      const rating = parseFloat(document.getElementById('movieRating').value);
+      const duration = parseInt(document.getElementById('movieDuration').value);
+      const genre = document.getElementById('movieGenre').value;
+      const year = parseInt(document.getElementById('movieYear').value);
+      const synopsis = document.getElementById('movieSynopsis').value;
+      const trailer = document.getElementById('movieTrailer').value;
+      
+      addMovie(title, poster, rating, duration, genre, year, synopsis, trailer);
+      closeAddMovieModal();
+      this.reset();
+    });
+    
+    document.getElementById('editMovieForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const id = document.getElementById('editMovieId').value;
+      const title = document.getElementById('editMovieTitle').value;
+      const poster = document.getElementById('editMoviePoster').value;
+      const rating = parseFloat(document.getElementById('editMovieRating').value);
+      const duration = parseInt(document.getElementById('editMovieDuration').value);
+      const genre = document.getElementById('editMovieGenre').value;
+      const year = parseInt(document.getElementById('editMovieYear').value);
+      const synopsis = document.getElementById('editMovieSynopsis').value;
+      const trailer = document.getElementById('editMovieTrailer').value;
+      
+      editMovie(id, title, poster, rating, duration, genre, year, synopsis, trailer);
+      closeEditMovieModal();
+    });
+    
+    function saveMovies() {
+      localStorage.setItem('movies', JSON.stringify(movies));
+    }
+    
+    function loadMovies() {
+      const storedMovies = localStorage.getItem('movies');
+      if (storedMovies) {
+        movies = JSON.parse(storedMovies);
+        renderMovies();
+      }
+    }
+    
+    window.onload = loadMovies;
+    </script>
+    </body></html>
